@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta name="google-site-verification" content="4ZaH0j8eCkvq4L_S8HoD6E7AAe_oeaZAUaTtSK3DIdA">
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#100B20">
@@ -71,8 +72,9 @@
 
   <link rel="stylesheet" href="styles.css">
 
+  <!-- LOGO OVERRIDES -->
   <style>
-    /* HEADER LOGO FIX */
+    /* Main header logo */
     .header-logo-box {
       width: 40px !important;
       height: 40px !important;
@@ -80,10 +82,12 @@
       min-height: 40px !important;
       max-width: 40px !important;
       max-height: 40px !important;
-      overflow: hidden !important;
-      display: block !important;
       flex: 0 0 40px !important;
-      border-radius: 9px;
+      display: block !important;
+      overflow: hidden !important;
+      border-radius: 9px !important;
+      padding: 0 !important;
+      margin: 0 !important;
     }
 
     .header-logo-image {
@@ -93,10 +97,10 @@
       min-height: 40px !important;
       max-width: 40px !important;
       max-height: 40px !important;
-      object-fit: cover !important;
+      object-fit: contain !important;
       display: block !important;
-      margin: 0 !important;
       padding: 0 !important;
+      margin: 0 !important;
       position: static !important;
       transform: none !important;
     }
@@ -107,9 +111,75 @@
       gap: 10px !important;
     }
 
-    .site-header .brand > span:last-child {
-      width: auto !important;
-      height: auto !important;
+    /* Small logo inside phone artwork */
+    .mini-logo {
+      width: 24px !important;
+      height: 24px !important;
+      min-width: 24px !important;
+      min-height: 24px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      display: block !important;
+      border-radius: 6px !important;
+      background: transparent !important;
+      color: transparent !important;
+    }
+
+    .mini-logo img {
+      width: 24px !important;
+      height: 24px !important;
+      min-width: 24px !important;
+      min-height: 24px !important;
+      max-width: 24px !important;
+      max-height: 24px !important;
+      object-fit: contain !important;
+      display: block !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      position: static !important;
+      transform: none !important;
+    }
+
+    /* Footer logo */
+    .footer-logo-box {
+      width: 36px !important;
+      height: 36px !important;
+      min-width: 36px !important;
+      min-height: 36px !important;
+      max-width: 36px !important;
+      max-height: 36px !important;
+      flex: 0 0 36px !important;
+      display: block !important;
+      overflow: hidden !important;
+      border-radius: 8px !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      background: transparent !important;
+      color: transparent !important;
+    }
+
+    .footer-logo-image {
+      width: 36px !important;
+      height: 36px !important;
+      min-width: 36px !important;
+      min-height: 36px !important;
+      max-width: 36px !important;
+      max-height: 36px !important;
+      object-fit: contain !important;
+      display: block !important;
+      padding: 0 !important;
+      margin: 0 !important;
+      position: static !important;
+      transform: none !important;
+    }
+
+    .footer-brand {
+      display: flex !important;
+      align-items: center !important;
+      gap: 10px !important;
     }
   </style>
 
@@ -138,52 +208,18 @@
   <div class="ambient ambient-two"></div>
 
   <header class="site-header">
-
     <div class="container nav-wrap">
 
-      <a
-        class="brand"
-        href="#top"
-        aria-label="Youmerology home"
-      >
+      <a class="brand" href="#top" aria-label="Youmerology home">
 
-        <span
-          class="header-logo-box"
-          style="
-            width:40px!important;
-            height:40px!important;
-            min-width:40px!important;
-            min-height:40px!important;
-            max-width:40px!important;
-            max-height:40px!important;
-            overflow:hidden!important;
-            display:block!important;
-            flex:0 0 40px!important;
-          "
-        >
-
+        <span class="header-logo-box">
           <img
             class="header-logo-image"
             src="D565DB39-8B8D-4396-AFD5-382561A0675E%203.png"
             alt="Youmerology"
             width="40"
             height="40"
-            style="
-              width:40px!important;
-              height:40px!important;
-              min-width:40px!important;
-              min-height:40px!important;
-              max-width:40px!important;
-              max-height:40px!important;
-              object-fit:cover!important;
-              display:block!important;
-              margin:0!important;
-              padding:0!important;
-              position:static!important;
-              transform:none!important;
-            "
           >
-
         </span>
 
         <span>Youmerology</span>
@@ -201,18 +237,11 @@
         <span></span>
       </button>
 
-      <nav
-        class="nav-links"
-        id="navLinks"
-        aria-label="Main navigation"
-      >
+      <nav class="nav-links" id="navLinks" aria-label="Main navigation">
 
         <a href="#readings">Readings</a>
-
         <a href="#forecasting">Forecasting</a>
-
         <a href="#compatibility">Compatibility</a>
-
         <a href="#calculator">Life Path</a>
 
         <a
@@ -227,7 +256,6 @@
       </nav>
 
     </div>
-
   </header>
 
   <main id="top">
@@ -280,13 +308,9 @@
           </div>
 
           <div class="trust-row">
-
             <span>Free core readings</span>
-
             <span>Compatibility tools</span>
-
             <span>Past + future forecasts</span>
-
           </div>
 
         </div>
@@ -297,7 +321,6 @@
         >
 
           <div class="orbit orbit-one"></div>
-
           <div class="orbit orbit-two"></div>
 
           <div class="phone">
@@ -308,7 +331,14 @@
 
               <div class="screen-header">
 
-                <span class="mini-logo">Y</span>
+                <span class="mini-logo">
+                  <img
+                    src="D565DB39-8B8D-4396-AFD5-382561A0675E%203.png"
+                    alt=""
+                    width="24"
+                    height="24"
+                  >
+                </span>
 
                 <span>Today</span>
 
@@ -362,23 +392,15 @@
           </div>
 
           <div class="floating-card card-left">
-
             <span>Life Path</span>
-
             <strong>11</strong>
-
             <small>Intuition • Vision</small>
-
           </div>
 
           <div class="floating-card card-right">
-
             <span>Compatibility</span>
-
             <strong>86%</strong>
-
             <small>Natural connection</small>
-
           </div>
 
         </div>
@@ -396,25 +418,17 @@
         </p>
 
         <div class="proof-tags">
-
           <span>Core Profile</span>
-
           <span>Relationship Insights</span>
-
           <span>Timeline Forecasting</span>
-
           <span>Any Date</span>
-
         </div>
 
       </div>
 
     </section>
 
-    <section
-      class="section"
-      id="readings"
-    >
+    <section class="section" id="readings">
 
       <div class="container">
 
@@ -439,9 +453,7 @@
 
           <article class="feature-card">
 
-            <div class="feature-number">
-              01
-            </div>
+            <div class="feature-number">01</div>
 
             <h3>
               Life Path Number
@@ -455,9 +467,7 @@
 
           <article class="feature-card">
 
-            <div class="feature-number">
-              02
-            </div>
+            <div class="feature-number">02</div>
 
             <h3>
               Soul Number
@@ -472,9 +482,7 @@
 
           <article class="feature-card">
 
-            <div class="feature-number">
-              03
-            </div>
+            <div class="feature-number">03</div>
 
             <h3>
               Personality Number
@@ -488,9 +496,7 @@
 
           <article class="feature-card">
 
-            <div class="feature-number">
-              04
-            </div>
+            <div class="feature-number">04</div>
 
             <h3>
               Path of Destiny
@@ -504,9 +510,7 @@
 
           <article class="feature-card">
 
-            <div class="feature-number">
-              05
-            </div>
+            <div class="feature-number">05</div>
 
             <h3>
               Challenges & Bridges
@@ -521,9 +525,7 @@
 
           <article class="feature-card feature-card-accent">
 
-            <div class="feature-number">
-              +
-            </div>
+            <div class="feature-number">+</div>
 
             <h3>
               One Connected Profile
@@ -542,21 +544,15 @@
 
     </section>
 
-    <section
-      class="section split-section"
-      id="forecasting"
-    >
+    <section class="section split-section" id="forecasting">
 
       <div class="container split-grid">
 
         <div class="timeline-preview">
 
           <div class="preview-top">
-
             <span>FORECAST TIMELINE</span>
-
             <span>2026</span>
-
           </div>
 
           <div class="preview-title">
@@ -566,11 +562,8 @@
           <div class="forecast-row">
 
             <div class="forecast-label">
-
               <strong>5</strong>
-
               <span>Personal Year</span>
-
             </div>
 
             <div class="forecast-line">
@@ -582,11 +575,8 @@
           <div class="forecast-row">
 
             <div class="forecast-label">
-
               <strong>9</strong>
-
               <span>Personal Month</span>
-
             </div>
 
             <div class="forecast-line">
@@ -598,11 +588,8 @@
           <div class="forecast-row">
 
             <div class="forecast-label">
-
               <strong>3</strong>
-
               <span>Personal Day</span>
-
             </div>
 
             <div class="forecast-line">
@@ -612,23 +599,14 @@
           </div>
 
           <div class="date-track">
-
             <span>PAST</span>
-
             <span class="date-point"></span>
-
             <span class="date-point"></span>
-
             <span class="date-point hot"></span>
-
             <span class="date-point current"></span>
-
             <span class="date-point"></span>
-
             <span class="date-point"></span>
-
             <span>FUTURE</span>
-
           </div>
 
         </div>
@@ -649,24 +627,10 @@
           </p>
 
           <ul class="check-list">
-
-            <li>
-              Move to any selected date — past, present or future
-            </li>
-
-            <li>
-              See multiple numerology cycles together
-            </li>
-
-            <li>
-              Spot high-intensity impact zones on the timeline
-            </li>
-
-            <li>
-              Use timing insights for reflection around relationships, career, travel, launches
-              and major decisions
-            </li>
-
+            <li>Move to any selected date — past, present or future</li>
+            <li>See multiple numerology cycles together</li>
+            <li>Spot high-intensity impact zones on the timeline</li>
+            <li>Use timing insights for reflection around relationships, career, travel, launches and major decisions</li>
           </ul>
 
           <a
@@ -684,10 +648,7 @@
 
     </section>
 
-    <section
-      class="section"
-      id="compatibility"
-    >
+    <section class="section" id="compatibility">
 
       <div class="container">
 
@@ -722,31 +683,18 @@
           <div class="match-visual">
 
             <div class="person-orb">
-
               <span>A</span>
-
               <strong>6</strong>
-
             </div>
 
             <div class="connection">
-
-              <div class="match-score">
-                86%
-              </div>
-
-              <span>
-                Compatibility
-              </span>
-
+              <div class="match-score">86%</div>
+              <span>Compatibility</span>
             </div>
 
             <div class="person-orb">
-
               <span>B</span>
-
               <strong>3</strong>
-
             </div>
 
           </div>
@@ -757,10 +705,7 @@
 
     </section>
 
-    <section
-      class="section calculator-section"
-      id="calculator"
-    >
+    <section class="section calculator-section" id="calculator">
 
       <div class="container calculator-grid">
 
@@ -810,11 +755,9 @@
             id="calculatorResult"
             aria-live="polite"
           >
-
             <div class="result-placeholder">
               Your number will appear here.
             </div>
-
           </div>
 
         </div>
@@ -924,8 +867,7 @@
 
             <p>
               These are date-based numerology cycles used to interpret changing themes over
-              different time scales. Youmerology lets you view them together and move to
-              different dates.
+              different time scales. Youmerology lets you view them together and move to different dates.
             </p>
 
           </details>
@@ -938,8 +880,7 @@
 
             <p>
               Yes. Youmerology includes compatibility insights that combine numerology
-              information for two people and highlight strengths, friction points and
-              potential areas for growth.
+              information for two people and highlight strengths, friction points and potential areas for growth.
             </p>
 
           </details>
@@ -952,8 +893,7 @@
 
             <p>
               Yes. The forecast tools are designed to explore past, present and future dates,
-              including Personal Year, Month and Day cycles, Periods, Pinnacles and the visual
-              timeline.
+              including Personal Year, Month and Day cycles, Periods, Pinnacles and the visual timeline.
             </p>
 
           </details>
@@ -1012,9 +952,7 @@
             rel="noopener"
           >
 
-            <span class="apple-symbol">
-              ●
-            </span>
+            <span class="apple-symbol">●</span>
 
             <span>
               <small>Download on the</small>
@@ -1042,13 +980,17 @@
           href="#top"
         >
 
-          <span class="brand-mark">
-            Y
+          <span class="footer-logo-box">
+            <img
+              class="footer-logo-image"
+              src="D565DB39-8B8D-4396-AFD5-382561A0675E%203.png"
+              alt="Youmerology"
+              width="36"
+              height="36"
+            >
           </span>
 
-          <span>
-            Youmerology
-          </span>
+          <span>Youmerology</span>
 
         </a>
 
