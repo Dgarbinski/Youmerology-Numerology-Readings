@@ -1,9 +1,10 @@
 {
-  "name": "Youmerology",
+  "name": "Youmerology — Personal Numerology",
   "short_name": "Youmerology",
   "start_url": "/Youmerology-Numerology-Readings/",
+  "scope": "/Youmerology-Numerology-Readings/",
   "display": "standalone",
-  "background_color": "#100B20",
-  "theme_color": "#100B20",
-  "description": "Personal numerology readings, compatibility and forecasting."
+  "background_color": "#0C0818",
+  "theme_color": "#0C0818",
+  "description": "Personal numerology for spiritual self-discovery, relationships and timing."
 }
