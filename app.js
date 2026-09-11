@@ -1,3 +1,10 @@
+const themeLink = document.createElement("link");
+themeLink.rel = "stylesheet";
+themeLink.href = "theme.css?v=20260911-1";
+document.head.appendChild(themeLink);
+
+document.querySelector('meta[name="theme-color"]')?.setAttribute("content", "#15101f");
+
 const menuButton = document.getElementById("menuButton");
 const navLinks = document.getElementById("navLinks");
 
