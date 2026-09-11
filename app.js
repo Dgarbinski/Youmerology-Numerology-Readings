@@ -18,7 +18,6 @@ if (yearElement) {
   yearElement.textContent = new Date().getFullYear();
 }
 
-// Replace the native date input with a clear Month / Day / Year picker.
 function setupBirthDatePicker() {
   const oldInput = document.getElementById("birthDate");
   if (!oldInput) return;
@@ -129,6 +128,13 @@ function setupBirthDatePicker() {
       box-shadow: 0 0 0 3px rgba(242,201,116,.08);
     }
 
+    .result-calculation {
+      margin: 10px auto 2px;
+      color: #8f859e;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
     @media (max-width: 440px) {
       .birthdate-picker {
         grid-template-columns: 1fr 1fr;
@@ -144,8 +150,7 @@ function setupBirthDatePicker() {
 
 setupBirthDatePicker();
 
-// Load the exact 1–78 personal-vibration descriptions used by Youmerology.
-const vibrationMeaningsPromise = fetch("personal_vibrations_1-78.json?v=20260911-2", { cache: "no-store" })
+const vibrationMeaningsPromise = fetch("personal_vibrations_1-78.json?v=20260911-3", { cache: "no-store" })
   .then((response) => {
     if (!response.ok) throw new Error("Unable to load vibration descriptions.");
     return response.json();
@@ -155,7 +160,6 @@ const vibrationMeaningsPromise = fetch("personal_vibrations_1-78.json?v=20260911
     return {};
   });
 
-// Preserve 11, 22 and 33 as master-number roots.
 function reduceNumber(value) {
   let n = Number(value);
   while (n > 9 && ![11, 22, 33].includes(n)) {
@@ -166,23 +170,23 @@ function reduceNumber(value) {
   return n;
 }
 
-function sumDigits(value) {
-  return String(value)
-    .split("")
-    .reduce((sum, digit) => sum + Number(digit), 0);
-}
-
-// Match Youmerology's compound-vibration method:
-// month + day + the sum of the four year digits.
-// The compound is kept for the specific interpretation, then reduced for the root.
-// Example: compound 50 -> root 5, displayed as 50/5 and using description 50.
+// Exact Youmerology Life Path method:
+// MONTH + DAY + each individual digit of the YEAR.
+// Example: 4/27/1986 = 4 + 27 + 1 + 9 + 8 + 6 = 55, then 55 -> 10 -> 1.
 function calculateLifePath(month, day, year) {
-  const yearVibration = sumDigits(year);
-  const compound = Number(month) + Number(day) + yearVibration;
+  const yearDigits = String(year).padStart(4, "0").split("").map(Number);
+  const compound =
+    Number(month) +
+    Number(day) +
+    yearDigits[0] +
+    yearDigits[1] +
+    yearDigits[2] +
+    yearDigits[3];
 
   return {
     compound,
-    root: reduceNumber(compound)
+    root: reduceNumber(compound),
+    yearDigits
   };
 }
 
@@ -213,16 +217,18 @@ document.getElementById("calculateButton")?.addEventListener("click", async () =
     return;
   }
 
-  const { compound, root } = calculateLifePath(month, day, year);
+  const { compound, root, yearDigits } = calculateLifePath(month, day, year);
   const displayNumber = formatLifePath(compound, root);
   const vibrationMeanings = await vibrationMeaningsPromise;
   const meaning = vibrationMeanings[String(compound)];
+  const calculation = `${month} + ${day} + ${yearDigits.join(" + ")} = ${compound}`;
 
   if (!meaning) {
     result.innerHTML = `
       <div>
         <div class="result-number">${displayNumber}</div>
         <div class="result-title">Life Path ${displayNumber}</div>
+        <div class="result-calculation">${calculation}</div>
         <div class="result-copy">Your compound vibration is ${compound}, reducing to ${root}. Open Youmerology for the complete interpretation.</div>
         <a class="result-cta" href="https://apps.apple.com/us/app/youmerology/id6758997549" target="_blank" rel="noopener">
           Explore your complete numerology profile in Youmerology →
@@ -236,6 +242,7 @@ document.getElementById("calculateButton")?.addEventListener("click", async () =
     <div>
       <div class="result-number">${displayNumber}</div>
       <div class="result-title">Life Path ${displayNumber}</div>
+      <div class="result-calculation">${calculation}</div>
       <div class="result-copy">${meaning}</div>
       <a class="result-cta" href="https://apps.apple.com/us/app/youmerology/id6758997549" target="_blank" rel="noopener">
         Explore your complete numerology profile in Youmerology →
