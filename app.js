@@ -145,7 +145,7 @@ function setupBirthDatePicker() {
 setupBirthDatePicker();
 
 // Load the exact 1–78 personal-vibration descriptions used by Youmerology.
-const vibrationMeaningsPromise = fetch("personal_vibrations_1-78.json", { cache: "no-cache" })
+const vibrationMeaningsPromise = fetch("personal_vibrations_1-78.json?v=20260911-2", { cache: "no-store" })
   .then((response) => {
     if (!response.ok) throw new Error("Unable to load vibration descriptions.");
     return response.json();
@@ -166,13 +166,19 @@ function reduceNumber(value) {
   return n;
 }
 
-// The compound number is the unreduced sum of every digit in the full birth date.
-// Example: a compound 50 that reduces to 5 is displayed as 50/5 and uses description 50.
-function calculateLifePath(month, day, year) {
-  const dateString = `${String(month).padStart(2, "0")}${String(day).padStart(2, "0")}${String(year)}`;
-  const compound = dateString
+function sumDigits(value) {
+  return String(value)
     .split("")
     .reduce((sum, digit) => sum + Number(digit), 0);
+}
+
+// Match Youmerology's compound-vibration method:
+// month + day + the sum of the four year digits.
+// The compound is kept for the specific interpretation, then reduced for the root.
+// Example: compound 50 -> root 5, displayed as 50/5 and using description 50.
+function calculateLifePath(month, day, year) {
+  const yearVibration = sumDigits(year);
+  const compound = Number(month) + Number(day) + yearVibration;
 
   return {
     compound,
