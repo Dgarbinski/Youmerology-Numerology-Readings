@@ -18,6 +18,132 @@ if (yearElement) {
   yearElement.textContent = new Date().getFullYear();
 }
 
+// Turn the native date field into a clearer Month / Day / Year picker.
+function setupBirthDatePicker() {
+  const oldInput = document.getElementById("birthDate");
+  if (!oldInput) return;
+
+  const label = document.querySelector('label[for="birthDate"]');
+  if (label) {
+    label.textContent = "Birth date";
+    label.htmlFor = "birthMonth";
+  }
+
+  const picker = document.createElement("div");
+  picker.className = "birthdate-picker";
+  picker.setAttribute("role", "group");
+  picker.setAttribute("aria-label", "Birth date: month, day and year");
+
+  const monthSelect = document.createElement("select");
+  monthSelect.id = "birthMonth";
+  monthSelect.name = "bday-month";
+  monthSelect.setAttribute("aria-label", "Birth month");
+  monthSelect.innerHTML = `
+    <option value="">Month</option>
+    <option value="1">January</option>
+    <option value="2">February</option>
+    <option value="3">March</option>
+    <option value="4">April</option>
+    <option value="5">May</option>
+    <option value="6">June</option>
+    <option value="7">July</option>
+    <option value="8">August</option>
+    <option value="9">September</option>
+    <option value="10">October</option>
+    <option value="11">November</option>
+    <option value="12">December</option>
+  `;
+
+  const daySelect = document.createElement("select");
+  daySelect.id = "birthDay";
+  daySelect.name = "bday-day";
+  daySelect.setAttribute("aria-label", "Birth day");
+  daySelect.innerHTML = '<option value="">Day</option>';
+
+  const yearSelect = document.createElement("select");
+  yearSelect.id = "birthYear";
+  yearSelect.name = "bday-year";
+  yearSelect.setAttribute("aria-label", "Birth year");
+  yearSelect.innerHTML = '<option value="">Year</option>';
+
+  const currentYear = new Date().getFullYear();
+  for (let year = currentYear; year >= 1900; year -= 1) {
+    const option = document.createElement("option");
+    option.value = String(year);
+    option.textContent = String(year);
+    yearSelect.appendChild(option);
+  }
+
+  function updateDays() {
+    const month = Number(monthSelect.value);
+    const year = Number(yearSelect.value) || 2000;
+    const previousDay = Number(daySelect.value);
+
+    daySelect.innerHTML = '<option value="">Day</option>';
+
+    const daysInMonth = month ? new Date(year, month, 0).getDate() : 31;
+    for (let day = 1; day <= daysInMonth; day += 1) {
+      const option = document.createElement("option");
+      option.value = String(day);
+      option.textContent = String(day);
+      daySelect.appendChild(option);
+    }
+
+    if (previousDay && previousDay <= daysInMonth) {
+      daySelect.value = String(previousDay);
+    }
+  }
+
+  updateDays();
+  monthSelect.addEventListener("change", updateDays);
+  yearSelect.addEventListener("change", updateDays);
+
+  picker.append(monthSelect, daySelect, yearSelect);
+  oldInput.replaceWith(picker);
+
+  const style = document.createElement("style");
+  style.textContent = `
+    .birthdate-picker {
+      display: grid;
+      grid-template-columns: 1.35fr .8fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .birthdate-picker select {
+      width: 100%;
+      height: 56px;
+      padding: 0 38px 0 14px;
+      border: 1px solid rgba(255,255,255,.13);
+      border-radius: 14px;
+      outline: none;
+      color: #fff;
+      background-color: #120d20;
+      font: inherit;
+      color-scheme: dark;
+      appearance: auto;
+    }
+
+    .birthdate-picker select:focus {
+      border-color: rgba(242,201,116,.55);
+      box-shadow: 0 0 0 3px rgba(242,201,116,.08);
+    }
+
+    @media (max-width: 440px) {
+      .birthdate-picker {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      #birthYear {
+        grid-column: 1 / -1;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+setupBirthDatePicker();
+
 // These descriptions match the Life Path / personal vibration text used in Youmerology.
 const lifePathMeanings = {
   1: "Independence is your core drive, and you need room to act without feeling boxed in. You naturally step into leadership because people sense your will and direction. New experiences and first-time ventures energize you, and you do best when you can pioneer. Your lesson is to lead without isolating yourself or dismissing other viewpoints. At your best you are original, inventive, and decisive, turning ideas into bold action. At your worst you can become domineering, stubborn, or self-centered and push people away. Choose roles where initiative matters—builder, founder, inventor, captain—and practice steady humility.",
@@ -42,24 +168,34 @@ function reduceNumber(value) {
   return n;
 }
 
-function calculateLifePath(dateString) {
-  const digits = dateString.replace(/\D/g, "");
-  if (digits.length !== 8) return null;
-  const total = digits.split("").reduce((sum, digit) => sum + Number(digit), 0);
+function calculateLifePath(month, day, year) {
+  const dateString = `${String(month).padStart(2, "0")}${String(day).padStart(2, "0")}${String(year)}`;
+  const total = dateString.split("").reduce((sum, digit) => sum + Number(digit), 0);
   return reduceNumber(total);
 }
 
 document.getElementById("calculateButton")?.addEventListener("click", () => {
-  const input = document.getElementById("birthDate");
+  const month = Number(document.getElementById("birthMonth")?.value);
+  const day = Number(document.getElementById("birthDay")?.value);
+  const year = Number(document.getElementById("birthYear")?.value);
   const result = document.getElementById("calculatorResult");
-  const value = input.value;
 
-  if (!value) {
-    result.innerHTML = '<div class="result-placeholder">Choose your birth date first.</div>';
+  if (!month || !day || !year) {
+    result.innerHTML = '<div class="result-placeholder">Choose your birth month, day and year first.</div>';
     return;
   }
 
-  const number = calculateLifePath(value);
+  const validDay = new Date(year, month - 1, day);
+  if (
+    validDay.getFullYear() !== year ||
+    validDay.getMonth() !== month - 1 ||
+    validDay.getDate() !== day
+  ) {
+    result.innerHTML = '<div class="result-placeholder">Please choose a valid birth date.</div>';
+    return;
+  }
+
+  const number = calculateLifePath(month, day, year);
   const meaning = lifePathMeanings[number] || "Open Youmerology for your complete personalized interpretation.";
   const title = [11, 22, 33].includes(number) ? `Life Path ${number} · Master Number` : `Life Path ${number}`;
 
