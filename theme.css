@@ -1,0 +1,209 @@
+:root {
+  --bg: #15101f;
+  --bg-deep: #0c0911;
+  --surface: rgba(255, 250, 252, .055);
+  --surface-strong: rgba(255, 250, 252, .09);
+  --text: #fffafd;
+  --muted: #d1c6d6;
+  --muted-2: #9e91a7;
+  --gold: #e7c77f;
+  --gold-soft: #f8e8bb;
+  --violet: #bba7e8;
+  --violet-deep: #8068b6;
+  --aqua: #91cdbf;
+  --border: rgba(255, 246, 251, .12);
+  --shadow: 0 28px 90px rgba(4, 2, 8, .42);
+}
+
+body {
+  background:
+    radial-gradient(circle at 12% 4%, rgba(142, 111, 183, .22), transparent 31rem),
+    radial-gradient(circle at 88% 26%, rgba(105, 170, 153, .12), transparent 28rem),
+    radial-gradient(circle at 48% 78%, rgba(196, 119, 145, .08), transparent 31rem),
+    radial-gradient(circle at 50% 100%, rgba(231, 199, 127, .055), transparent 27rem),
+    linear-gradient(180deg, #181120 0%, var(--bg) 45%, var(--bg-deep) 100%);
+}
+
+.aurora-one { background: #9b76c8; opacity: .16; }
+.aurora-two { background: #6cae9f; opacity: .13; }
+
+.site-header {
+  background: rgba(20, 14, 29, .82);
+  border-bottom-color: rgba(255, 244, 250, .07);
+}
+
+.nav-links { color: #e2d8e7; }
+.nav-links a:hover { color: #fffafd; }
+.nav-cta {
+  border-color: rgba(231, 199, 127, .34);
+  color: #f8e8bb !important;
+  background: rgba(231, 199, 127, .085);
+}
+
+.eyebrow { color: #e6c47b; }
+h1 span { color: #f4dfad; text-shadow: 0 0 40px rgba(231, 199, 127, .10); }
+
+.button-primary {
+  color: #2b2030;
+  background: linear-gradient(145deg, #faedc7, #e3bf73);
+  box-shadow: 0 14px 34px rgba(213, 173, 92, .18);
+}
+.button-primary:hover { box-shadow: 0 18px 42px rgba(213, 173, 92, .24); }
+.button-secondary {
+  color: #f7f1f8;
+  border-color: rgba(238, 223, 235, .15);
+  background: rgba(255, 247, 251, .045);
+}
+
+.trust-row { color: #b7aaba; }
+.trust-row span::before { color: #bba7e8; }
+
+.cosmic-glow {
+  background: radial-gradient(circle, rgba(157, 123, 198, .30), rgba(112, 178, 162, .09) 50%, transparent 72%);
+}
+.cosmic-ring { border-color: rgba(187, 167, 232, .20); }
+.phone {
+  border-color: #302738;
+  background: #120d18;
+  box-shadow: var(--shadow), 0 0 82px rgba(142, 105, 183, .17);
+}
+.phone-screen {
+  background:
+    radial-gradient(circle at 50% 28%, rgba(166, 129, 201, .22), transparent 180px),
+    linear-gradient(180deg, #20152a, #110c17);
+}
+.screen-header { color: #cabfce; }
+.screen-copy { color: #b8acba; }
+.energy-card { background: rgba(255, 250, 252, .045); }
+.energy-card span { color: #a89baa; }
+.energy-card strong { color: #fbf5fb; }
+.floating-card {
+  border-color: rgba(255, 245, 250, .12);
+  background: rgba(38, 28, 46, .84);
+}
+.floating-card span,
+.floating-card small { color: #b9adb9; }
+
+.proof-strip,
+.split-section,
+.calculator-section {
+  border-color: rgba(255, 245, 250, .055);
+  background: rgba(255, 249, 252, .018);
+}
+.proof-inner p { color: #c9becb; }
+.proof-tags span { color: #b7aab8; }
+
+.intent-card,
+.feature-card,
+.calculator-card,
+.review-card,
+.article-card {
+  background: linear-gradient(180deg, rgba(255, 250, 252, .052), rgba(255, 250, 252, .022));
+}
+.intent-card::after {
+  background: radial-gradient(circle, rgba(187, 167, 232, .16), transparent 70%);
+}
+.intent-card p,
+.feature-card p,
+.faq-list details p,
+.result-copy,
+.cta-panel p { color: #bdb1bf; }
+.feature-card:hover,
+.guide-card:hover { border-color: rgba(187, 167, 232, .34); }
+.feature-card-accent {
+  border-color: rgba(231, 199, 127, .23);
+  background: linear-gradient(145deg, rgba(231, 199, 127, .09), rgba(187, 167, 232, .055));
+}
+
+.timeline-preview {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(117, 184, 166, .13), transparent 180px),
+    radial-gradient(circle at 20% 80%, rgba(177, 146, 211, .12), transparent 210px),
+    linear-gradient(145deg, #20162a, #15101e);
+}
+.preview-top { color: #a99cab; }
+.forecast-label span { color: #aea2b0; }
+.forecast-line i { background: linear-gradient(90deg, #8068b6, #91cdbf, #e7c77f); }
+.date-track { color: #8d828f; }
+.date-point { border-color: #756b78; }
+.date-point.hot { border-color: #91cdbf; box-shadow: 0 0 15px rgba(145, 205, 191, .45); }
+.check-list li { color: #d2c7d3; }
+
+.compatibility-card {
+  border-color: rgba(231, 199, 127, .19);
+  background:
+    radial-gradient(circle at 82% 50%, rgba(172, 133, 204, .18), transparent 270px),
+    radial-gradient(circle at 65% 70%, rgba(107, 173, 156, .09), transparent 220px),
+    linear-gradient(145deg, rgba(231, 199, 127, .055), rgba(255, 250, 252, .026));
+}
+.person-orb {
+  border-color: rgba(255, 245, 250, .13);
+  background: rgba(255, 250, 252, .04);
+  box-shadow: inset 0 0 30px rgba(187, 167, 232, .08);
+}
+.person-orb span,
+.connection span { color: #a89caa; }
+
+.calculator-card label { color: #d5cbd7; }
+.calculator-card input,
+.birthdate-picker select {
+  color: #fffafd !important;
+  background-color: #1b1422 !important;
+  border-color: rgba(255, 245, 250, .14) !important;
+  color-scheme: dark;
+}
+.calculator-card input:focus,
+.birthdate-picker select:focus {
+  border-color: rgba(231, 199, 127, .58) !important;
+  box-shadow: 0 0 0 3px rgba(231, 199, 127, .09) !important;
+}
+.calculator-result { background: rgba(6, 4, 8, .15); }
+.result-placeholder { color: #9b8e9d; }
+.result-calculation { color: #9f92a2 !important; }
+
+.guide-section {
+  background: linear-gradient(180deg, transparent, rgba(128, 104, 182, .045), transparent);
+}
+.guide-card { background: rgba(255, 250, 252, .03); }
+.guide-card em { color: #c9bcd0; }
+.review-card footer,
+.review-disclaimer { color: #978b99; }
+
+.cta-panel {
+  border-color: rgba(231, 199, 127, .20);
+  background:
+    radial-gradient(circle at 7% 50%, rgba(231, 199, 127, .13), transparent 190px),
+    radial-gradient(circle at 82% 0%, rgba(187, 167, 232, .12), transparent 250px),
+    rgba(255, 250, 252, .03);
+}
+
+.site-footer {
+  border-top-color: rgba(255, 245, 250, .075);
+  background: rgba(7, 5, 10, .25);
+}
+.footer-grid p { color: #978b99; }
+.footer-links a { color: #b2a6b4; }
+.footer-bottom { color: #7d727f; border-top-color: rgba(255, 245, 250, .055); }
+
+.article-page {
+  background:
+    radial-gradient(circle at 50% 0, rgba(147, 112, 187, .19), transparent 30rem),
+    linear-gradient(180deg, #181120, #0c0911);
+}
+.article-card p,
+.article-card li { color: #cbc0cc; }
+.article-callout {
+  border-color: rgba(231, 199, 127, .20);
+  background: rgba(231, 199, 127, .06);
+}
+.breadcrumbs { color: #9e919f; }
+.breadcrumbs a { color: #c9beca; }
+
+::selection {
+  color: #211827;
+  background: #e8d39c;
+}
+
+@media (max-width: 760px) {
+  .nav-links { background: rgba(22, 15, 30, .985); }
+}
